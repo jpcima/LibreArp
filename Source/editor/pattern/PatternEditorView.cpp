@@ -38,10 +38,7 @@ PatternEditorView::PatternEditorView(LibreArp &p, EditorState &e)
     loopResetSlider.setNumDecimalPlacesToDisplay(0);
     loopResetSlider.setTextBoxStyle(Slider::TextEntryBoxPosition::TextBoxLeft, false, 32, 24);
     loopResetSlider.setValue(processor.getLoopReset());
-    loopResetSlider.onValueChange = [this] {
-        processor.setLoopReset(loopResetSlider.getValue());
-        processor.stopAll();
-    };
+    loopResetSlider.addListener(this);
     addAndMakeVisible(loopResetSlider);
 
     loopResetSliderLabel.setText("Reset every (beats):", NotificationType::dontSendNotification);
@@ -52,10 +49,7 @@ PatternEditorView::PatternEditorView(LibreArp &p, EditorState &e)
     snapSlider.setRange(1, 16, 1);
     snapSlider.setValue(state.divisor, NotificationType::dontSendNotification);
     snapSlider.setTextBoxStyle(Slider::TextEntryBoxPosition::TextBoxLeft, false, 32, 24);
-    snapSlider.onValueChange = [this] {
-        state.divisor = static_cast<int>(snapSlider.getValue());
-        editor.repaint();
-    };
+    snapSlider.addListener(this);
     addAndMakeVisible(snapSlider);
 
     snapSliderLabel.setText("Snap:", NotificationType::dontSendNotification);
@@ -81,6 +75,17 @@ void PatternEditorView::resized() {
 
     beatBarViewport.setBounds(area.removeFromTop(16));
     editorViewport.setBounds(area);
+}
+
+void PatternEditorView::sliderValueChanged(Slider *slider) {
+    if (slider == &loopResetSlider) {
+        processor.setLoopReset(slider->getValue());
+        processor.stopAll();
+    }
+    else if (slider == &snapSlider) {
+        state.divisor = static_cast<int>(slider->getValue());
+        editor.repaint();
+    }
 }
 
 void PatternEditorView::zoomPattern(float deltaX, float deltaY) {

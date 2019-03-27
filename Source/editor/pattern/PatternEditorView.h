@@ -23,7 +23,7 @@
 #include "BeatBar.h"
 
 
-class PatternEditorView : public Component {
+class PatternEditorView : public Component, Slider::Listener {
 public:
 
     explicit PatternEditorView(LibreArp &p, EditorState &editorState);
@@ -31,6 +31,8 @@ public:
     void paint(Graphics &g) override;
 
     void resized() override;
+
+    void sliderValueChanged(Slider *slider) override;
 
     void zoomPattern(float deltaX, float deltaY);
 

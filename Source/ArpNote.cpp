@@ -31,7 +31,7 @@ ArpNote::ArpNote(NoteData data) {
 
 ValueTree ArpNote::toValueTree() {
     ValueTree result = ValueTree(TREEID_NOTE);
-    result.appendChild(this->data.toValueTree(), nullptr);
+    result.addChild(this->data.toValueTree(), -1, nullptr);
     result.setProperty(TREEID_START_POINT, this->startPoint, nullptr);
     result.setProperty(TREEID_END_POINT, this->endPoint, nullptr);
     return result;

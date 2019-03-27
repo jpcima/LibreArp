@@ -20,12 +20,14 @@
 #include "../../LibreArp.h"
 #include "JuceHeader.h"
 
-class XmlEditor : public Component {
+class XmlEditor : public Component, Button::Listener {
 public:
 
     explicit XmlEditor(LibreArp &p);
 
     void resized() override;
+
+    void buttonClicked(Button *button) override;
 
 private:
     LibreArp &processor;

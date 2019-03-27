@@ -27,14 +27,7 @@ XmlEditor::XmlEditor(LibreArp &p) : processor(p) {
 
     applyXmlButton.setButtonText("Apply");
 
-    applyXmlButton.onClick = [this] {
-        try {
-            processor.parsePattern(xmlEditor.getText());
-            xmlEditor.removeColour(TextEditor::outlineColourId);
-        } catch (ArpIntegrityException &e) {
-            xmlEditor.setColour(TextEditor::outlineColourId, RED);
-        }
-    };
+    applyXmlButton.addListener(this);
 
     addAndMakeVisible(xmlEditor);
     addAndMakeVisible(applyXmlButton);
@@ -43,4 +36,15 @@ XmlEditor::XmlEditor(LibreArp &p) : processor(p) {
 void XmlEditor::resized() {
     xmlEditor.setBounds(0, 0, getWidth(), getHeight() - 30);
     applyXmlButton.setBounds(0, getHeight() - 30, getWidth(), 30);
+}
+
+void XmlEditor::buttonClicked(Button *button) {
+    if (button == &applyXmlButton) {
+        try {
+            processor.parsePattern(xmlEditor.getText());
+            xmlEditor.removeColour(TextEditor::outlineColourId);
+        } catch (ArpIntegrityException &e) {
+            xmlEditor.setColour(TextEditor::outlineColourId, RED);
+        }
+    }
 }

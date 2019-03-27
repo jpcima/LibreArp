@@ -85,7 +85,7 @@ ValueTree ArpPattern::toValueTree() {
 
     ValueTree noteTree = result.getOrCreateChildWithName(TREEID_NOTES, nullptr);
     for (ArpNote note : this->notes) {
-        noteTree.appendChild(note.toValueTree(), nullptr);
+        noteTree.addChild(note.toValueTree(), -1, nullptr);
     }
 
     return result;

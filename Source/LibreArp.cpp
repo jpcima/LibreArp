@@ -262,8 +262,8 @@ AudioProcessorEditor *LibreArp::createEditor() {
 //==============================================================================
 void LibreArp::getStateInformation(MemoryBlock &destData) {
     ValueTree tree = ValueTree(TREEID_LIBREARP);
-    tree.appendChild(this->pattern.toValueTree(), nullptr);
-    tree.appendChild(this->editorState.toValueTree(), nullptr);
+    tree.addChild(this->pattern.toValueTree(), -1, nullptr);
+    tree.addChild(this->editorState.toValueTree(), -1, nullptr);
     tree.setProperty(TREEID_LOOP_RESET, this->loopReset, nullptr);
     tree.setProperty(TREEID_PATTERN_XML, this->patternXml, nullptr);
     tree.setProperty(TREEID_OCTAVES, this->octaves->get(), nullptr);

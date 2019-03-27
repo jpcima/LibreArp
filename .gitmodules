@@ -3,4 +3,4 @@
 	url = https://github.com/steinbergmedia/vst3sdk.git
 [submodule "Vendor/juce"]
 	path = Vendor/juce
-	url = https://github.com/WeAreROLI/JUCE.git
+	url = https://github.com/DISTRHO/JUCE.git

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT name="LibreArp" projectType="audioplug" jucerVersion="5.3.2"
+<JUCERPROJECT name="LibreArp" projectType="audioplug" jucerVersion="5.1.2"
               version="1.1" buildVST3="1" buildAUv3="0" buildAU="0" buildVST="1"
               pluginName="LibreArp" pluginDesc="A free (as in free speech) arpeggio sequencer."
               pluginManufacturer="The LibreArp contributors" companyName="The LibreArp contributors"
@@ -13,7 +13,9 @@
               pluginVST3Category="Fx,Tools" reportAppUsage="0" displaySplashScreen="0"
               includeBinaryInAppConfig="0" pluginIsSynth="0" pluginEditorRequiresKeys="1"
               pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
-              pluginAAXDisableMultiMono="0">
+              pluginAAXDisableMultiMono="0" splashScreenColour="Dark" buildRTAS="0"
+              buildAAX="0" buildStandalone="0" enableIAA="0" pluginChannelConfigs=""
+              pluginRTASCategory="" pluginAAXCategory="AAX_ePlugInCategory_Dynamics">
   <MAINGROUP id="FtyPbS" name="LibreArp">
     <GROUP id="{4D6501CE-D613-8A3D-7ABE-D57B9896DB0F}" name="Source">
       <FILE id="FbDdGI" name="ArpBuiltEvents.cpp" compile="1" resource="0"
@@ -97,9 +99,12 @@
     </CLION>
     <VS2017 targetFolder="Builds/VisualStudio2017" vst3Folder="Vendor/vst3sdk">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug"/>
-        <CONFIGURATION isDebug="0" name="Release_64" targetName="LibreArp64" winArchitecture="x64"/>
-        <CONFIGURATION isDebug="0" name="Release_32" targetName="LibreArp32" winArchitecture="Win32"/>
+        <CONFIGURATION isDebug="1" name="Debug" winWarningLevel="4" generateManifest="1"
+                       winArchitecture="x64"/>
+        <CONFIGURATION isDebug="0" name="Release_64" targetName="LibreArp64" winArchitecture="x64"
+                       winWarningLevel="4" generateManifest="1"/>
+        <CONFIGURATION isDebug="0" name="Release_32" targetName="LibreArp32" winArchitecture="Win32"
+                       winWarningLevel="4" generateManifest="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_gui_extra" path="Vendor/juce/modules"/>
